@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  source: 
+  source_fingerprint: MyString
+  openid: MyString
+  style_id: 1
+  output: 
+
+two:
+  source: 
+  source_fingerprint: MyString
+  openid: MyString
+  style_id: 1
+  output: 

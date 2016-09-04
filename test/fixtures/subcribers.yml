@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  subcribe: false
+  openid: MyString
+  nickname: MyString
+  sex: 1
+  language: MyString
+  city: MyString
+  province: MyString
+  country: MyString
+  headimgurl: MyString
+  subscribe_time: MyString
+
+two:
+  subcribe: false
+  openid: MyString
+  nickname: MyString
+  sex: 1
+  language: MyString
+  city: MyString
+  province: MyString
+  country: MyString
+  headimgurl: MyString
+  subscribe_time: MyString
