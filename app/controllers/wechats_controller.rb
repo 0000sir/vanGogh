@@ -13,6 +13,7 @@ class WechatsController < ApplicationController
       unless last.nil?
         last.style_id = style.id
         last.save
+        last.convert!
       end
       request.reply.text "将为你模仿#{style.author}的#{style.title}风格来画这幅画"
     rescue
