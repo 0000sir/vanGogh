@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160904111008) do
+ActiveRecord::Schema.define(version: 20160916061317) do
 
   create_table "artworks", force: :cascade do |t|
     t.string   "source_file_name"
@@ -24,9 +24,13 @@ ActiveRecord::Schema.define(version: 20160904111008) do
     t.string   "output_content_type"
     t.integer  "output_file_size"
     t.datetime "output_updated_at"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
     t.string   "media_id"
+    t.string   "decorated_output_file_name"
+    t.string   "decorated_output_content_type"
+    t.integer  "decorated_output_file_size"
+    t.datetime "decorated_output_updated_at"
   end
 
   create_table "styles", force: :cascade do |t|
