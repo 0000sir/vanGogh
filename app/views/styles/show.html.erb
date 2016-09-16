@@ -1,9 +1,8 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
+<h1>
   <%= @style.title %>
-</p>
+</h1>
 
 <p>
   <strong>Author:</strong>
@@ -12,7 +11,7 @@
 
 <p>
   <strong>Image:</strong>
-  <%= image_tag @style.image %>
+  <%= image_tag @style.image.url(:large) %>
 </p>
 
 <p>

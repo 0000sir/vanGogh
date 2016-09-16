@@ -8,7 +8,6 @@
       <th>Title</th>
       <th>Author</th>
       <th>Image</th>
-      <th>Image fingerprint</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -18,8 +17,7 @@
       <tr>
         <td><%= style.title %></td>
         <td><%= style.author %></td>
-        <td><%= style.image %></td>
-        <td><%= style.image_fingerprint %></td>
+        <td><%= image_tag style.image.url(:thumbnail) %></td>
         <td><%= link_to 'Show', style %></td>
         <td><%= link_to 'Edit', edit_style_path(style) %></td>
         <td><%= link_to 'Destroy', style, method: :delete, data: { confirm: 'Are you sure?' } %></td>

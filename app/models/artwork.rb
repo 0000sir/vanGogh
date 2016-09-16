@@ -8,18 +8,25 @@ class Artwork < ApplicationRecord
   
   EXTENSIONS = {"image/jpeg"=>".jpg", "image/png"=>".png"}
   
+  APPRENTICES = ["http://0000:123456@192.168.30.85:3000/artworks.json"]
+  
   # call remote Artist
   def convert!
     require 'rest_client'
-    RestClient.post("http://192.168.30.85:3000/artworks.json", 
+    RestClient.post(random_apprentice, 
             "artwork[source_file]"=>File.new(self.source.path),
-            "artwork[style_file]"=>File.new(self.style.image.path)) unless self.style_id.nil?
+            "artwork[style_file]"=>File.new(self.style.image.path), 
+            "artwork[callback]"=>"http://0000:123456@192.168.30.85:3000/artworks.json") unless self.style_id.nil?
   end
   
   private
     def rename_file_to_mime_type
       extension = EXTENSIONS[source_content_type]
       self.source.instance_write :file_name, "#{source_file_name}#{extension}"
+    end
+    
+    def random_apprentice
+      APPRENTICES.shuffle.first
     end
   
 end
