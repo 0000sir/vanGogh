@@ -17,7 +17,7 @@ class Artwork < ApplicationRecord
             "artwork[source_file]"=>File.new(self.source.path),
             "artwork[style][fingerprint]"=>self.style.image_fingerprint,
             "artwork[style][source]"=>"http://dev.gonghui.org.cn#{self.style.image.url}",
-            "artwork[callback]"=>"http://0000:123456@dev.gonghui.org.cn/artworks.json") unless self.style_id.nil?
+            "artwork[callback]"=>"http://0000:123456@dev.gonghui.org.cn/artworks/callback.json") unless self.style_id.nil?
   end
   
   def sendfile

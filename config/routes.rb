@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  post 'artworks/callback'
+  post 'artworks/callback'=>'artworks#callback'
 
   resources :styles
   resource :wechat, only: [:show, :create]
