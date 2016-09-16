@@ -8,6 +8,7 @@ class ArtworksController < ApplicationController
     unless artwork.nil?
       artwork.output = params[:output]
       artwork.save
+      artwork.sendfile
       render json: {"message"=>"ok"}, status: 200
     else
       render json: {"message"=>"not found"}, status: 404

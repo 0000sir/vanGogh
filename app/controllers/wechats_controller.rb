@@ -32,23 +32,28 @@ class WechatsController < ApplicationController
   on :image do |request|
     # 0. check artwork that style not set
     msg = ""
+    artists = ""
+    Style.all.each do |style|
+      artists += "#{style.id}. #{style.author}\n"
+    end
+    
     if Artwork.where(:openid=>request[:FromUserName], :style_id=>nil).count >0
       msg = "上一张照片还没有选择绘画风格，请先设置\n"
       media_id = Artwork.where(:openid=>request[:FromUserName], :style_id=>nil).last.media_id
       wechat_msg = {:touser=>request[:FromUserName], :msgtype=>"image", :image=>{:media_id=>media_id}}
       wechat.custom_message_send wechat_msg
+      msg +=  "请选择艺术家风格:\n#{artists}直接回复数字选择"
+      request.reply.text msg
     else
       # 1. fetch image from wechat server
       file = wechat.media request[:MediaId]
       # 2. save it to local
+      msg +=  "请选择艺术家风格:\n#{artists}直接回复数字选择"
+      request.reply.text msg
       Artwork.create :source=>File.new(file.path), :openid=>request[:FromUserName], :media_id=>request[:MediaId]
     end
-    artists = ""
-    Style.all.each do |style|
-      artists += "#{style.id}. #{style.author}\n"
-    end
-    msg +=  "请选择艺术家风格:\n#{artists}直接回复数字选择"
-    request.reply.text msg
+    
+    
   end
   
   on :shortvideo do |request|

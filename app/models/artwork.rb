@@ -20,6 +20,15 @@ class Artwork < ApplicationRecord
             "artwork[callback]"=>"http://0000:123456@dev.gonghui.org.cn/artworks.json") unless self.style_id.nil?
   end
   
+  def sendfile
+    # 1. upload to wechat
+    response = Wechat.api.media_create "image", "#{self.output.path(:large)}"
+    media_id = response['media_id']
+    # 2. send to client
+    wechat_msg = {:touser=>self.openid, :msgtype=>"image", :image=>{:media_id=>media_id}}
+    Wechat.api.custom_message_send wechat_msg
+  end
+  
   private
     def rename_file_to_mime_type
       extension = EXTENSIONS[source_content_type]
