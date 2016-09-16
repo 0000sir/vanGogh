@@ -15,8 +15,9 @@ class Artwork < ApplicationRecord
     require 'rest_client'
     RestClient.post(random_apprentice, 
             "artwork[source_file]"=>File.new(self.source.path),
-            "artwork[style_file]"=>File.new(self.style.image.path), 
-            "artwork[callback]"=>"http://0000:123456@192.168.30.85:3000/artworks.json") unless self.style_id.nil?
+            "artwork[style][fingerprint]"=>self.style.image_fingerprint,
+            "artwork[style][source]"=>"http://dev.gonghui.org.cn#{self.style.image.url}",
+            "artwork[callback]"=>"http://0000:123456@dev.gonghui.org.cn/artworks.json") unless self.style_id.nil?
   end
   
   private
